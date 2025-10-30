@@ -47,7 +47,7 @@ class Experiment(Base):
     subjects: Mapped[List["Subject"]] = relationship(
         "Subject",
         secondary="enrollments",
-        back_populates="experiment",
+        back_populates="experiments",
     )
 
     # 1:N — jeden Experiment ma wiele DataPointów
@@ -84,12 +84,12 @@ class Subject(Base):
     experiments: Mapped[List[Experiment]] = relationship(
         "Experiment",
         secondary="enrollments",
-        back_populates="subject",
+        back_populates="subjects",
     )
 
 
 if __name__ == "__main__":
-    # Base.metadata.create_all(engine)
+    Base.metadata.create_all(engine)
 
     #     # 1. Dodaj 2 wiersze do Experiments
     # with Session(engine) as session:
